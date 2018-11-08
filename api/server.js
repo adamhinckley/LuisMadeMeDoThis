@@ -4,7 +4,6 @@ const express = require("express");
 // yarn add express helmet morgan
 
 const gatekeeper = require("../gatekeeper/gatekeeperMiddleware.js");
-const productRouter = require("../products/productRouter.js");
 const configureMiddleware = require("../config/middleware.js");
 
 const server = express();
@@ -24,8 +23,6 @@ server.get("/", (req, res) => {
 server.get("/secret", gatekeeper, (req, res) => {
   res.send(req.welcomeMessage);
 });
-
-server.use("/api/products", productRouter);
 
 server.get("/api/clients", (req, res) => {
   res.send("GET /clients");
